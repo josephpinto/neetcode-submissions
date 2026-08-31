@@ -1,0 +1,11 @@
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # could start anywhere
+        # for each i, try to extend with every val after i
+
+        dp = [1]*(len(nums)+1)
+        for i in range(len(nums)-1,-1,-1):
+            for j in range(i+1, len(nums)):
+                if nums[j] > nums[i]:
+                    dp[i] = max(dp[i],1+dp[j])
+        return max(dp)
